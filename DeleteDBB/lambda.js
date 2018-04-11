@@ -1,9 +1,13 @@
 let AWS = require('aws-sdk');
 const ddb = new AWS.DynamoDB.DocumentClient();
 exports.handler = function (event, context, callback) {
+
+	email = event.queryStringParameters.email;
 	ddb.delete({
 		TableName: 'contact_us',
-		Key: { 'email': date }
+		Key: {
+			'email': email
+		}
 	}, function (err, data) {
 		if (err) {
 			//handle error
